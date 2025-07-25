@@ -7,7 +7,15 @@ LISTEN_PORT = 1886  # Local port your client will connect to
 
 TARGET_HOST = 'm2m.sprsun.com'
 TARGET_PORT = 1886  # Real server port
-
+functions_names = {
+    1: "Read Coils",
+    2: "Read Discrete Inputs",
+    3: "Read Holding Registers",
+    4: "Read Input Registers",
+    5: "Write Single Coil",
+    6: "Write Single Register",
+    8: "Diagnostics",
+}
 import struct
 
 def parse_modbus_rtu(data):
@@ -26,7 +34,10 @@ def parse_modbus_rtu(data):
     crc_calc = calc_crc16(data[:-2])
 
     print(f"[MODBUS] Address: {address}")
-    print(f"[MODBUS] Function: 0x{func_code:02X} ({func_code})")
+    if func_code in functions_names:
+        print(f"[MODBUS] Function: {functions_names[func_code]} ({func_code})")
+    else:
+       print(f"[MODBUS] Function: 0x{func_code:02X} ({func_code})")
     print(f"[MODBUS] Register: 0x{register:02X} ({register})")
     print(f"[MODBUS] Length:   0x{length:02X} ({length})")
     print(f"[MODBUS] Payload: {payload.hex()}")

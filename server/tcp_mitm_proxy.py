@@ -68,6 +68,8 @@ def forward(src, dst, direction, print=False):
     try:
         while True:
             data = src.recv(4096)
+            if direction == "C→S":
+                print(f'Data length={len(data)}')
             if not data:
                 break
             if print:

@@ -64,9 +64,6 @@ def print_hex(direction, data):
     spaced = ' '.join(hexstr[i:i+2] for i in range(0, len(hexstr), 2))
     print(f"[{direction}] {spaced}")
 
-def kupa(arg):
-    return len(arg)
-
 def forward(src, dst, direction, print=False):
     import builtins
     # print(f"[DEBUG] len is type {type(builtins.len)} and value {builtins.len}")
@@ -81,7 +78,7 @@ def forward(src, dst, direction, print=False):
                 parse_modbus_rtu(data)
             print_hex(direction, data)
             if direction == "C→S":
-                print(kupa('1111'))
+                print(len)
             dst.sendall(data)
     except Exception as e:
         print(f"[!] Error: {e}")

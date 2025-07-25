@@ -74,7 +74,7 @@ def forward(src, dst, direction, print=False):
                 parse_modbus_rtu(data)
             print_hex(direction, data)
             if direction == "C→S":
-                print('Data length=', len('a1111'))
+                print(len('1111'))
             dst.sendall(data)
     except Exception as e:
         print(f"[!] Error: {e}")

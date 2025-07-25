@@ -64,11 +64,14 @@ def print_hex(direction, data):
     spaced = ' '.join(hexstr[i:i+2] for i in range(0, len(hexstr), 2))
     print(f"[{direction}] {spaced}")
 
+def kupa(arg):
+    return len(arg)
+
 def forward(src, dst, direction, print=False):
     import builtins
-    print(f"[DEBUG] len is type {type(builtins.len)} and value {builtins.len}")
-    print(f"[DEBUG] builtins.len is type {type(builtins.len)} and value {builtins.len}")
-    print(f"[DEBUG] len is builtins.len? {len is builtins.len}")    
+    # print(f"[DEBUG] len is type {type(builtins.len)} and value {builtins.len}")
+    # print(f"[DEBUG] builtins.len is type {type(builtins.len)} and value {builtins.len}")
+    # print(f"[DEBUG] len is builtins.len? {len is builtins.len}")    
     try:
         while True:
             data = src.recv(4096)
@@ -78,7 +81,7 @@ def forward(src, dst, direction, print=False):
                 parse_modbus_rtu(data)
             print_hex(direction, data)
             if direction == "C→S":
-                print(builtins.len('1111'))
+                print(kupa('1111'))
             dst.sendall(data)
     except Exception as e:
         print(f"[!] Error: {e}")

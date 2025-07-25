@@ -65,8 +65,8 @@ def print_hex(direction, data):
     print(f"[{direction}] {spaced}")
 
 def forward(src, dst, direction, print=False):
-    print(f"[DEBUG] len is type {type(len)} and value {len}")
     import builtins
+    print(f"[DEBUG] len is type {type(builtins.len)} and value {builtins.len}")
     print(f"[DEBUG] builtins.len is type {type(builtins.len)} and value {builtins.len}")
     print(f"[DEBUG] len is builtins.len? {len is builtins.len}")    
     try:
@@ -78,7 +78,7 @@ def forward(src, dst, direction, print=False):
                 parse_modbus_rtu(data)
             print_hex(direction, data)
             if direction == "C→S":
-                print(len('1111'))
+                print(builtins.len('1111'))
             dst.sendall(data)
     except Exception as e:
         print(f"[!] Error: {e}")

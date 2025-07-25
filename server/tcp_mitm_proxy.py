@@ -65,6 +65,10 @@ def print_hex(direction, data):
     print(f"[{direction}] {spaced}")
 
 def forward(src, dst, direction, print=False):
+    print(f"[DEBUG] len is type {type(len)} and value {len}")
+    import builtins
+    print(f"[DEBUG] builtins.len is type {type(builtins.len)} and value {builtins.len}")
+    print(f"[DEBUG] len is builtins.len? {len is builtins.len}")    
     try:
         while True:
             data = src.recv(4096)
